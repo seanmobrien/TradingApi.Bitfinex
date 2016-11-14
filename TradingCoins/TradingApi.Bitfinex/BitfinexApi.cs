@@ -9,12 +9,13 @@ using RestSharp;
 using TradingApi.ModelObjects;
 using TradingApi.ModelObjects.Bitfinex.Json;
 using TradingApi.ModelObjects.Utility;
+using System.Security;
 
 namespace TradingApi.Bitfinex
 {
    public sealed partial class BitfinexApi
    {
-      private readonly string _apiSecret;
+      private readonly SecureString _apiSecret;
       private readonly string _apiKey;
 
       private const string ApiBfxKey = "X-BFX-APIKEY";
@@ -62,12 +63,16 @@ namespace TradingApi.Bitfinex
       public string BaseBitfinexUrl = @"https://api.bitfinex.com";
 
       public BitfinexApi(string apiSecret, string apiKey)
+            : this(Common.ToSecureString(apiSecret), apiKey)
+      {
+         apiSecret = string.Empty;
+      }
+      public BitfinexApi(SecureString apiSecret, string apiKey)
       {
          _apiSecret = apiSecret;
          _apiKey = apiKey;
          Logger.Log.InfoFormat("Connecting to Bitfinex Api with key: {0}",apiKey);
          InitializeEvents();
-
       }
 
       #region Unauthenticated Calls
@@ -813,7 +818,7 @@ namespace TradingApi.Bitfinex
 
       private string GetHexHashSignature(string payload)
       {
-         HMACSHA384 hmac = new HMACSHA384(Encoding.UTF8.GetBytes(_apiSecret));
+         HMACSHA384 hmac = new HMACSHA384(Encoding.UTF8.GetBytes(_apiSecret.ToString()));
          byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(payload));
          return BitConverter.ToString(hash).Replace("-", "").ToLower();
       }
