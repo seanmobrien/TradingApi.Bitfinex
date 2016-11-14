@@ -64,3 +64,6 @@ bld/
 *.vsp
 *.vspx
 *.sap
+
+#packages
+[Pp]ackages/[^/]+/
