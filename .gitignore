@@ -55,6 +55,8 @@ Temporary Items
 bld/
 [Bb]in/
 [Oo]bj/
+[Oo]bj/[Dd]ebug/
+[Oo]bj/[Rr]eleases?/
 
 # Visual Studio 2015 cache/options directory
 .vs/
