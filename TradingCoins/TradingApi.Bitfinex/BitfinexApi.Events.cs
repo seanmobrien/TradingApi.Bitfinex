@@ -110,53 +110,53 @@ namespace TradingApi.Bitfinex
        public event LendsResponseMsgHandler LendsResponseMsg;
        public delegate void LendsResponseMsgHandler(IList<BitfinexLendsResponse> lendsResponse);
 
-       private void OnLendsResponseMsg(IList<BitfinexLendsResponse> lendsResponse) { }
+       protected virtual void OnLendsResponseMsg(IList<BitfinexLendsResponse> lendsResponse) { }
 
-       private void OnLendbookResponseMsg(BitfinexLendbookResponse lendbookResponse) { }
+       protected virtual void OnLendbookResponseMsg(BitfinexLendbookResponse lendbookResponse) { }
 
-       private void OnClaimPositionMsg(BitfinexMarginPositionResponse claimPosResponse) { }
+       protected virtual void OnClaimPositionMsg(BitfinexMarginPositionResponse claimPosResponse) { }
 
-       private void OnCloseSwapMsg(BitfinexActiveSwapsInMarginResponse closeSwapResponse) { }
+       protected virtual void OnCloseSwapMsg(BitfinexActiveSwapsInMarginResponse closeSwapResponse) { }
 
-       private void OnActiveSwapsUsedInMarginMsg(IList<BitfinexActiveSwapsInMarginResponse> activeSwapsInMarginResponse) { }
+       protected virtual void OnActiveSwapsUsedInMarginMsg(IList<BitfinexActiveSwapsInMarginResponse> activeSwapsInMarginResponse) { }
 
-       private void OnActiveCreditsMsg(IList<BitfinexActiveCreditsResponse> activeCreditsResponse) { }
+       protected virtual void OnActiveCreditsMsg(IList<BitfinexActiveCreditsResponse> activeCreditsResponse) { }
 
-       private void OnOfferStatusMsg(BitfinexOfferStatusResponse offerStatusResponse) { }
+       protected virtual void OnOfferStatusMsg(BitfinexOfferStatusResponse offerStatusResponse) { }
 
-       private void OnCancelOfferMsg(BitfinexOfferStatusResponse cancelOfferResponse) { }
+       protected virtual void OnCancelOfferMsg(BitfinexOfferStatusResponse cancelOfferResponse) { }
 
-       private void OnNewOfferStatusMsg(BitfinexOfferStatusResponse newOfferRespone) { }
+       protected virtual void OnNewOfferStatusMsg(BitfinexOfferStatusResponse newOfferRespone) { }
 
-       private void OnOrderStatusMsg(BitfinexOrderStatusResponse orderStatusResponse) { }
+       protected virtual void OnOrderStatusMsg(BitfinexOrderStatusResponse orderStatusResponse) { }
 
-       private void OnActivePositionssMsg(IList<BitfinexMarginPositionResponse> activePositionResponse) { }
+       protected virtual void OnActivePositionssMsg(IList<BitfinexMarginPositionResponse> activePositionResponse) { }
 
-       private void OnMarginInformationMsg(BitfinexMarginInfoResponse marginInfoResponse) { }
+       protected virtual void OnMarginInformationMsg(BitfinexMarginInfoResponse marginInfoResponse) { }
 
-       private void OnMyTradesMsg(IList<BitfinexMyTradesResponse> myTradesResponse) { }
+       protected virtual void OnMyTradesMsg(IList<BitfinexMyTradesResponse> myTradesResponse) { }
 
-       private void OnHistoryMsg(IList<BitfinexHistoryResponse> historyResponse) { }
+       protected virtual void OnHistoryMsg(IList<BitfinexHistoryResponse> historyResponse) { }
 
-       private void OnActiveOffersMsg(IList<BitfinexOfferStatusResponse> activeOfferResponse) { }
+       protected virtual void OnActiveOffersMsg(IList<BitfinexOfferStatusResponse> activeOfferResponse) { }
 
-       private void OnCancelAllActiveOrdersMsg(string msg) { }
+       protected virtual void OnCancelAllActiveOrdersMsg(string msg) { }
 
-       private void OnCancelMultipleOrdersMsg(string msg) { }
+       protected virtual void OnCancelMultipleOrdersMsg(string msg) { }
 
-       private void OnCancelReplaceFeedMsg(BitfinexCancelReplaceOrderResponse cancelReplaceReponse) { }
+       protected virtual void OnCancelReplaceFeedMsg(BitfinexCancelReplaceOrderResponse cancelReplaceReponse) { }
 
-       private void OnCancelOrderMsg(BitfinexOrderStatusResponse cancelResponse) { }
+       protected virtual void OnCancelOrderMsg(BitfinexOrderStatusResponse cancelResponse) { }
 
-       private void OnOrderFeedMsg(BitfinexNewOrderResponse orderResponse) { }
+       protected virtual void OnOrderFeedMsg(BitfinexNewOrderResponse orderResponse) { }
 
-       private void OnMultipleOrderFeedMsg(BitfinexMultipleNewOrderResponse ordersResponse) { }
+       protected virtual void OnMultipleOrderFeedMsg(BitfinexMultipleNewOrderResponse ordersResponse) { }
 
-       private void OnBalanceResponseMsg(IList<BitfinexBalanceResponse> balanceResponse) { }
+       protected virtual void OnBalanceResponseMsg(IList<BitfinexBalanceResponse> balanceResponse) { }
 
-       private void OnOrderBookMsg(BitfinexOrderBookGet marketData) { }
+       protected virtual void OnOrderBookMsg(BitfinexOrderBookGet marketData) { }
 
-       private void OnErrorMessage(string errorMessage) { } 
+       protected virtual void OnErrorMessage(string errorMessage) { } 
 
 
 

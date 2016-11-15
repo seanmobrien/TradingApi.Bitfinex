@@ -13,10 +13,10 @@ using System.Security;
 
 namespace TradingApi.Bitfinex
 {
-   public sealed partial class BitfinexApi
+   public partial class BitfinexApi
    {
-      private readonly SecureString _apiSecret;
-      private readonly string _apiKey;
+      private readonly SecureString apiSecret;
+      private readonly string apiKey;
 
       private const string ApiBfxKey = "X-BFX-APIKEY";
       private const string ApiBfxPayload = "X-BFX-PAYLOAD";
@@ -55,10 +55,10 @@ namespace TradingApi.Bitfinex
       private const string CloseSwapRequestUrl = @"/v1/swap/close";
       private const string ClaimPosRequestUrl = @"/v1/position/claim";
 
-      private const string DefaulOrderExchangeType = "bitfinex";
-      private const string DefaultLimitType = "exchange limit";
-      private const string Buy = "buy";
-      private const string Sell = "sell";
+      protected const string DefaultOrderExchangeType = "bitfinex";
+      protected const string DefaultLimitType = "exchange limit";
+      protected const string Buy = "buy";
+      protected const string Sell = "sell";
 
       public string BaseBitfinexUrl = @"https://api.bitfinex.com";
 
@@ -69,8 +69,8 @@ namespace TradingApi.Bitfinex
       }
       public BitfinexApi(SecureString apiSecret, string apiKey)
       {
-         _apiSecret = apiSecret;
-         _apiKey = apiKey;
+         this.apiSecret = apiSecret;
+         this.apiKey = apiKey;
          Logger.Log.InfoFormat("Connecting to Bitfinex Api with key: {0}",apiKey);
          InitializeEvents();
       }
@@ -248,17 +248,17 @@ namespace TradingApi.Bitfinex
 
       public BitfinexNewOrderResponse SendSimpleLimit(string symbol, string amount, string price, string side, bool isHidden = false)
       {
-         return SendOrder(symbol, amount, price, DefaulOrderExchangeType, side, DefaultLimitType, isHidden);
+         return SendOrder(symbol, amount, price, DefaultOrderExchangeType, side, DefaultLimitType, isHidden);
       }
 
       public BitfinexNewOrderResponse SendSimpleLimitBuy(string symbol, string amount, string price, bool isHidden = false)
       {
-         return SendOrder(symbol, amount, price, DefaulOrderExchangeType, Buy, DefaultLimitType, isHidden);
+         return SendOrder(symbol, amount, price, DefaultOrderExchangeType, Buy, DefaultLimitType, isHidden);
       }
 
       public BitfinexNewOrderResponse SendSimpleLimitSell(string symbol, string amount, string price, bool isHidden = false)
       {
-         return SendOrder(symbol, amount, price, DefaulOrderExchangeType, Sell, DefaultLimitType, isHidden);
+         return SendOrder(symbol, amount, price, DefaultOrderExchangeType, Sell, DefaultLimitType, isHidden);
       }
 
       #endregion
@@ -757,7 +757,7 @@ namespace TradingApi.Bitfinex
          var payload = Convert.ToBase64String(Encoding.UTF8.GetBytes(jsonObj));
          var request = new RestRequest();
          request.Method = Method.POST;
-         request.AddHeader(ApiBfxKey, _apiKey);
+         request.AddHeader(ApiBfxKey, apiKey);
          request.AddHeader(ApiBfxPayload, payload);
          request.AddHeader(ApiBfxSig, GetHexHashSignature(payload));
          return request;
@@ -818,7 +818,7 @@ namespace TradingApi.Bitfinex
 
       private string GetHexHashSignature(string payload)
       {
-         var hmac = new HMACSHA384(Encoding.UTF8.GetBytes(_apiSecret.ToString()));
+         var hmac = new HMACSHA384(Encoding.UTF8.GetBytes(apiSecret.ToString()));
          byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(payload));
          return BitConverter.ToString(hash).Replace("-", "").ToLower();
       }
