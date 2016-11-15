@@ -790,7 +790,7 @@ namespace TradingApi.Bitfinex
       {
          var client = new RestClient();
          var url = BaseBitfinexUrl + requestUrl;
-         client.BaseUrl = url;
+         client.BaseUrl = new Uri(url);
          return client;
       }
 
@@ -799,7 +799,7 @@ namespace TradingApi.Bitfinex
          try
          {
             var client = new RestClient();
-            client.BaseUrl = BaseBitfinexUrl;
+            client.BaseUrl = new Uri(BaseBitfinexUrl);
             var request = new RestRequest();
             request.Resource = url;
             IRestResponse response = client.Execute(request);
@@ -818,7 +818,7 @@ namespace TradingApi.Bitfinex
 
       private string GetHexHashSignature(string payload)
       {
-         HMACSHA384 hmac = new HMACSHA384(Encoding.UTF8.GetBytes(_apiSecret.ToString()));
+         var hmac = new HMACSHA384(Encoding.UTF8.GetBytes(_apiSecret.ToString()));
          byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(payload));
          return BitConverter.ToString(hash).Replace("-", "").ToLower();
       }

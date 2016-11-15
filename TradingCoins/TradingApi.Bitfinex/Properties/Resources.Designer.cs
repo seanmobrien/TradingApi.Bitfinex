@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TradingCoins.Properties {
+namespace TradingApi.Bitfinex.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TradingCoins.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TradingCoins.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TradingApi.Bitfinex.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace TradingCoins.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connecting to Bitfinex Api with key: {0}.
+        /// </summary>
+        internal static string ApiConnectInfo {
+            get {
+                return ResourceManager.GetString("ApiConnectInfo", resourceCulture);
             }
         }
     }
